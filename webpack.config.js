@@ -1,48 +1,105 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin= require('mini-css-extract-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+
+const isDev = process.env.NODE_ENV === 'development';
+console.log('development: ', isDev);
+
+const isProd = !isDev;
+
+const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
+
+// optimization
+const optimization = () => {
+    const config = {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
+
+    if(isProd) {
+        config.minimizer = [
+            new CssMinimizerWebpackPlugin
+        ]
+    }
+
+    return config;
+}
 
 module.exports = {
-    entry: './src/index.js',
+    context: path.resolve(__dirname, 'src'),
+    entry: './index.jsx',
     mode: 'development',
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                loader: 'babel-loader',
-                options: { 
-                    presets: ['@babel/preset-react']
-                }
+                exclude: /node_modules/,
+                type: 'javascript/auto',
+                use: {
+                    loader: 'babel-loader',
+                    options: { 
+                        presets: ['@babel/preset-react'],
+                        plugins: ['babel-plugin-react-scoped-css']
+                    },
+                },
             },
             {
-                test: /\.s?css$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                test: /\.css$/i,
+                type: 'javascript/auto',
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'scoped-css-loader']
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                type: 'javascript/auto',
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'scoped-css-loader', 'sass-loader']
             },
             {
                 test: /\.(png|svg|jpe?g|gif|ico)$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
+                use: ['file-loader']
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
+                use: ['file-loader']
             }
         ],
     },
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx'], // расширение по умолчанию
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
+        filename: filename('js'),
     },
+    optimization: optimization(),
     plugins: [
         new HtmlWebpackPlugin({
             title: 'App',
             template: path.resolve(__dirname, './src/index.html'), // шаблон
             filename: 'index.html', // название выходного файла
+            minify: {
+                collapseWhitespace: isProd
+            }
+        }),
+        new CleanWebpackPlugin(),
+        // new CopyWebpackPlugin([
+        //     {
+        //         from: './src/assets/images',
+        //         to: './dist/images',
+        //     }
+        // ]),
+        new MiniCssExtractPlugin({
+            filename: filename('css')
         })
     ],
-    // devServer: {
-    // }
-    devtool: 'source-map',
+    devServer: {
+        port: 8080,
+    },
+    devtool: isDev ? 'hidden-source-map' : '',
 }
