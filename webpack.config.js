@@ -11,7 +11,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 loader: 'babel-loader',
                 options: { 
-                    presets: ['@babel/env']
+                    presets: ['@babel/preset-react']
                 }
             },
             {
@@ -20,15 +20,11 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpe?g|gif|ico)$/i,
-                options: {
-                    name: 'assets/images/[name].[ext]'
-                }
+                type: 'asset/resource'
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                options: {
-                    name: 'assets/fonts/[name].[ext]'
-                }
+                type: 'asset/resource'
             }
         ],
     },
@@ -40,7 +36,11 @@ module.exports = {
         filename: 'bundle.js',
     },
     plugins: [
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            title: 'App',
+            template: path.resolve(__dirname, './src/index.html'), // шаблон
+            filename: 'index.html', // название выходного файла
+        })
     ],
     // devServer: {
     // }
