@@ -56,7 +56,7 @@ module.exports = {
         test: /\.(png|svg|jpe?g|gif|ico)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/images/[name].[ext]',
+          filename: 'assets/images/[name][ext]',
         },
       },
       {
@@ -64,7 +64,7 @@ module.exports = {
         type: 'asset/resource',
         use: ['file-loader'],
         generator: {
-          filename: 'assets/fonts/[name].[ext]',
+          filename: 'assets/fonts/[name][ext]',
         },
       },
       {
