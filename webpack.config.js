@@ -11,7 +11,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const isProd = !isDev;
 
-const filename = ext => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
+const filename = ext => (isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`);
 
 // optimization
 const optimization = () => {
