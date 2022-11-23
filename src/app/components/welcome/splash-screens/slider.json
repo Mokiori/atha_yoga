@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Исследуйте",
+    "description": "множество занятий и материалов по различным темам и направлениям",
+    "image": "/images/carousel_image_1.png"
+  },
+  {
+    "id": 2,
+    "title": "Занимайтесь",
+    "description": "в подходящее время, в удобном месте, с лучшими преподавателями",
+    "image": "/images/carousel_image_2.png"
+  },
+  {
+    "id": 3,
+    "title": "Создавайте",
+    "description": "собственные курсы и занятия",
+    "image": "/images/carousel_image_3.png"
+  }
+]
