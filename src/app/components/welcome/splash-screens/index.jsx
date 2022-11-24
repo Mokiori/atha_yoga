@@ -40,9 +40,15 @@ const CarouselPage = () => (
 const Item = props => (
   <Paper>
     <div className="splash_screens">
-      <h2>{props.item.title}</h2>
-      <p>{props.item.description}</p>
-      <img src={props.item.image} alt={props.item.title} />
+      <div className="spash_screens__title">
+        <h2>{props.item.title}</h2>
+      </div>
+      <div className="splash_screens__description">
+        <p>{props.item.description}</p>
+      </div>
+      <div className="splash_screens__image">
+        <img src={props.item.image} alt={props.item.title} />
+      </div>
     </div>
   </Paper>
 );
