@@ -4,7 +4,7 @@ import SplashScreens from '../../components/welcome/splash-screens';
 import './style.css';
 
 // const WelcomePage = () => <div className="logo"><Logo /></div>;
-const WelcomePage = () => <SplashScreens />;
+const WelcomePage = () => <SplashScreens className="splash_screens" />;
 
 // const WelcomePage = () => {
 //   const [isLogo, setIsLogo] = useState(true);
