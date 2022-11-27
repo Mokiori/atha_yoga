@@ -76,7 +76,7 @@ const Item = props => (
         <Typography variant="h2" class="header">
           <h2>{props.item.title}</h2>
         </Typography>
-        <Typography>
+        <Typography sx={{ mb: '64px' }}>
           <p>{props.item.description}</p>
         </Typography>
         <img src={props.item.image} alt={props.item.title} />
