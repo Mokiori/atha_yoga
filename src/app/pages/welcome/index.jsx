@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import Logo from '../../components/welcome';
 import SplashScreens from '../../components/welcome/splash-screens';
-import './style.css';
+import './style.scss';
+// eslint-disable-next-line import/order
+import { Button } from '@mui/material';
 
 // const WelcomePage = () => <div className="logo"><Logo /></div>;
-const WelcomePage = () => <SplashScreens className="splash_screens" />;
+// const WelcomePageCarousel = () => (
+const WelcomePage = () => (
+  <SplashScreens />
+);
 
 // const WelcomePage = () => {
 //   const [isLogo, setIsLogo] = useState(true);
 
 //   useEffect(() => {
-//     setTimeout(() => setIsLogo(false), 7000);
+//     setTimeout(() => setIsLogo(false), 2000);
 //   }, []);
 
-// eslint-disable-next-line max-len
-//   return isLogo ? <div className="logo"><Logo className="logo_image" /></div> : <SplashScreens />;
+//   return isLogo ? <div className="logo"><Logo className="logo_image" /></div> : <WelcomePageCarousel />;
 // };
 
 export default WelcomePage;
