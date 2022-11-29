@@ -72,7 +72,7 @@ const CarouselPage = () => {
         enableMouseEvents
       >
         {images.map((step, index) => (
-          <div key={step.label}>
+          <div key={step.id}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
                 component="img"

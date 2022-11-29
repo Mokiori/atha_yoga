@@ -17,9 +17,9 @@ const App = () => (
     <Container maxWidth="xs">
       <CssBaseline />
       <div className="App">
-        {/* <WelcomePage /> */}
+        <WelcomePage />
         {/* <LogInPage /> */}
-        <RegisterPage />
+        {/* <RegisterPage /> */}
       </div>
     </Container>
   </ThemeProvider>
