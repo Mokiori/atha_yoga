@@ -5,6 +5,7 @@ import { Container } from '@mui/material';
 import WelcomePage from './pages/welcome';
 import LogInPage from './pages/auto/login';
 import RegisterPage from './pages/auto/register';
+import Confirm from './components/auto/register-confirm';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -17,9 +18,10 @@ const App = () => (
     <Container maxWidth="xs">
       <CssBaseline />
       <div className="App">
-        <WelcomePage />
-        {/* <LogInPage /> */}
+        {/* <WelcomePage /> */}
+        <LogInPage />
         {/* <RegisterPage /> */}
+        {/* <Confirm /> */}
       </div>
     </Container>
   </ThemeProvider>

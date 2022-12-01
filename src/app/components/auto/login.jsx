@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import {
-  Button, TextField, FormControlLabel, Checkbox, Link, Grid, Box,
+  Button, TextField, Link, Grid, Box,
   Typography, InputAdornment, IconButton, OutlinedInput,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
@@ -90,28 +90,22 @@ const LogIn = () => {
               </IconButton>
             </InputAdornment>
               )}
+          sx={{ mb: '16px' }}
         />
-        <Grid container alignItems="center" justifyContent="space-between">
-          <Grid item>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-            />
-            <Typography display="inline" fontSize="14px">
-              Запомнить меня
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Link href="#" variant="body2" underline="none">
-              Забыли пароль?
-            </Link>
-          </Grid>
-        </Grid>
+        <Link
+          href="#"
+          variant="body2"
+          underline="none"
+          sx={{ display: 'block', textAlign: 'right', mb: '32px' }}
+        >
+          Забыли пароль?
+        </Link>
         <Button
           type="submit"
           size="large"
           fullWidth
           variant="contained"
-          sx={{ fontSize: '16px', fontWeight: 500 }}
+          sx={{ fontSize: '16px', fontWeight: 500, p: '11px' }}
         >
           Войти
         </Button>
