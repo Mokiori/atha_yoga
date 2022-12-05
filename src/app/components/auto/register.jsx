@@ -2,8 +2,9 @@
 import * as React from 'react';
 import {
   Box, TextField, Typography, Button, InputLabel, FormControl,
-  InputAdornment, IconButton, OutlinedInput, Link, Grid,
+  InputAdornment, IconButton, OutlinedInput, Grid,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Footer from './footer';
 
@@ -80,7 +81,6 @@ const Register = () => {
           </FormControl>
           <Button
             size="large"
-            type="submit"
             fullWidth
             variant="contained"
             sx={{
@@ -96,9 +96,9 @@ const Register = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2" underline="none">
+              <Typography component={Link} to="/login" variant="body2">
                 Войти
-              </Link>
+              </Typography>
             </Grid>
           </Grid>
         </Box>

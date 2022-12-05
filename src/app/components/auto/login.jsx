@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import {
-  Button, TextField, Link, Grid, Box,
+  Button, TextField, Grid, Box,
   Typography, InputAdornment, IconButton, OutlinedInput,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
@@ -92,15 +93,17 @@ const LogIn = () => {
               )}
           sx={{ mb: '16px' }}
         />
-        <Link
-          href="#"
+        <Typography
+          component={Link}
+          to="/changePassword"
           variant="body2"
-          underline="none"
           sx={{ display: 'block', textAlign: 'right', mb: '32px' }}
         >
           Забыли пароль?
-        </Link>
+        </Typography>
         <Button
+          component={Link}
+          to="/profile"
           type="submit"
           size="large"
           fullWidth
@@ -116,9 +119,9 @@ const LogIn = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2" underline="none">
+            <Typography component={Link} to="/register" variant="body2">
               Зарегистрироваться
-            </Link>
+            </Typography>
           </Grid>
         </Grid>
       </Box>
