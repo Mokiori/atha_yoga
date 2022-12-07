@@ -4,7 +4,7 @@ import {
   MobileStepper, Box, Button, Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import SwipeableViews from 'react-swipeable-views-react-18-fix';
+import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import carouselImg1 from './images/carousel_image_1.png';
 import carouselImg2 from './images/carousel_image_2.png';

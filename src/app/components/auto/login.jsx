@@ -1,14 +1,25 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-closing-tag-location */
 import * as React from 'react';
 import {
   Button, TextField, Grid, Box,
-  Typography, InputAdornment, IconButton, OutlinedInput,
+  Typography, InputAdornment, IconButton,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const LogIn = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = data => {
+    console.log(JSON.stringify(data, null, 2));
+  };
+
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -28,20 +39,6 @@ const LogIn = () => {
     });
   };
 
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
   return (
     <Box
       sx={{
@@ -52,11 +49,11 @@ const LogIn = () => {
       }}
     >
       <Typography variant="h4" fontSize="24px" fontWeight="500" gutterBottom sx={{ mb: '32px' }}>
-        Войти в аккаунт
+        Вход
       </Typography>
       <Box
         component="form"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         noValidate
         sx={{
           border: '1px solid #E0E0E0', borderRadius: '4px', p: '16px',
@@ -65,13 +62,18 @@ const LogIn = () => {
         <TextField
           fullWidth
           id="email"
-          placeholder="E-mail"
+          placeholder="Электронная почта"
           name="email"
           autoComplete="email"
           autoFocus
           sx={{ mb: '16px' }}
+          {...register('email', {
+            required: 'Поле не может быть пустым',
+          })}
+          error={errors?.email}
+          helperText={errors?.email ? errors?.email?.message : ''}
         />
-        <OutlinedInput
+        <TextField
           fullWidth
           name="password"
           placeholder="Пароль"
@@ -80,30 +82,35 @@ const LogIn = () => {
           type={values.showPassword ? 'text' : 'password'}
           value={values.password}
           onChange={handleChange('password')}
-          endAdornment={(
-            <InputAdornment position="end">
+          InputProps={{
+            endAdornment: <InputAdornment position="end">
               <IconButton
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
+                edge="end"
               >
                 {values.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
-            </InputAdornment>
-              )}
+            </InputAdornment>,
+          }}
+          {...register('password', {
+            required: 'Поле не может быть пустым',
+          })}
+          error={errors?.password}
+          helperText={errors?.password ? errors?.password?.message : ''}
           sx={{ mb: '16px' }}
         />
-        <Typography
-          component={Link}
-          to="/changePassword"
-          variant="body2"
-          sx={{ display: 'block', textAlign: 'right', mb: '32px' }}
-        >
-          Забыли пароль?
-        </Typography>
+        <Box textAlign="right" sx={{ mb: '32px' }}>
+          <Typography
+            component={Link}
+            to="/changePassword"
+            variant="body2"
+            sx={{ textDecoration: 'none' }}
+          >
+            Забыли пароль?
+          </Typography>
+        </Box>
         <Button
-          component={Link}
-          to="/profile"
           type="submit"
           size="large"
           fullWidth
@@ -119,7 +126,7 @@ const LogIn = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Typography component={Link} to="/register" variant="body2">
+            <Typography component={Link} to="/register" variant="body2" color="primary" sx={{ textDecoration: 'none' }}>
               Зарегистрироваться
             </Typography>
           </Grid>
